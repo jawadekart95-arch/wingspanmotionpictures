@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Wingspan Motion Pictures LLP</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#1a5f6e;--teal-light:#2a7f92;--teal-pale:#e8f4f7;
+  --grey:#8a9a9e;--dark:#0f1f22;--text:#2c3e42;--text-light:#6a7f84;
+  --white:#ffffff;--off-white:#f9fbfc;--border:#d4e4e8;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Montserrat',sans-serif;color:var(--text);background:var(--white);overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 60px;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-logo{display:flex;flex-direction:column}
+.nav-logo-name{font-weight:600;font-size:15px;letter-spacing:4px;color:var(--teal);text-transform:uppercase}
+.nav-logo-sub{font-size:8px;letter-spacing:5px;color:var(--grey);text-transform:uppercase;margin-top:2px}
+.nav-wing{margin-bottom:3px}
+.nav-wing svg{width:44px;display:block}
+nav ul{display:flex;gap:36px;list-style:none}
+nav ul a{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--text-light);text-decoration:none;font-weight:500;transition:color .2s}
+nav ul a:hover{color:var(--teal)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{width:22px;height:1px;background:var(--teal);display:block;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--white);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:32px}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:var(--text);text-decoration:none;font-weight:500}
+.mobile-close{position:absolute;top:24px;right:24px;font-size:24px;background:none;border:none;cursor:pointer;color:var(--text)}
+
+/* HERO */
+#hero{height:100vh;min-height:600px;display:flex;align-items:center;justify-content:center;position:relative;background:var(--dark);overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0f1f22 0%,#1a3a40 50%,#0d2830 100%)}
+.hero-content{position:relative;z-index:2;text-align:center;padding:0 24px;animation:fadeUp 1.2s ease forwards}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.hero-eyebrow{font-size:9px;letter-spacing:6px;text-transform:uppercase;color:var(--teal-light);margin-bottom:24px;font-weight:500}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(48px,8vw,96px);font-weight:300;color:var(--white);line-height:1;letter-spacing:-1px;margin-bottom:8px}
+.hero-title span{font-style:italic;color:rgba(255,255,255,0.4);display:block}
+.hero-sub{font-size:9px;letter-spacing:8px;text-transform:uppercase;color:var(--grey);margin-top:16px;margin-bottom:48px}
+.hero-cta{display:inline-block;padding:14px 40px;border:1px solid rgba(26,127,146,0.6);color:var(--white);font-size:9px;letter-spacing:3px;text-transform:uppercase;text-decoration:none;font-weight:500;transition:all .3s}
+.hero-cta:hover{background:var(--teal);border-color:var(--teal)}
+.hero-scroll{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--grey);font-size:8px;letter-spacing:3px;text-transform:uppercase}
+.scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--teal-light),transparent);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
+
+/* SECTIONS */
+section{padding:100px 60px}
+.inner{max-width:1100px;margin:0 auto}
+.sec-label{font-size:8px;letter-spacing:5px;text-transform:uppercase;color:var(--teal);font-weight:600;margin-bottom:14px}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,4vw,52px);font-weight:300;color:var(--dark);line-height:1.15;margin-bottom:18px}
+.sec-title em{font-style:italic;color:var(--teal)}
+.divider{width:40px;height:1px;background:var(--teal);margin-bottom:48px}
+
+/* ABOUT */
+#about{background:var(--white)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.about-text p{font-size:14px;line-height:1.9;color:var(--text-light);margin-bottom:20px;font-weight:300}
+.imppa-badge{display:inline-block;padding:8px 16px;background:var(--teal-pale);color:var(--teal);font-size:9px;letter-spacing:2px;text-transform:uppercase;font-weight:600;margin-top:8px}
+
+/* STATS */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:0}
+.stat-box{background:var(--teal-pale);border:1px solid var(--border);padding:36px 20px;text-align:center}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;color:var(--teal);line-height:1;margin-bottom:10px}
+.stat-lbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-light);font-weight:500}
+
+/* UPCOMING */
+#upcoming{background:var(--dark)}
+#upcoming .sec-title{color:var(--white)}
+#upcoming .sec-label{color:var(--teal-light)}
+.upcoming-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:80px;align-items:center}
+.poster{aspect-ratio:2/3;background:linear-gradient(160deg,#1a3a40,#0f2530);border:1px solid rgba(255,255,255,0.06);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.poster-ph{font-size:11px;letter-spacing:3px;color:rgba(255,255,255,0.2);text-transform:uppercase;text-align:center;padding:20px}
+.poster-icon{font-size:40px;margin-bottom:12px;opacity:.15}
+.upcoming-info{color:var(--white)}
+.film-tag{font-size:8px;letter-spacing:4px;text-transform:uppercase;color:var(--teal-light);font-weight:600;margin-bottom:20px}
+.film-title-lg{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4vw,58px);font-weight:300;line-height:1.1;margin-bottom:24px}
+.film-title-lg em{font-style:italic;opacity:.4;font-size:.7em;display:block}
+.film-meta{display:flex;flex-direction:column;gap:0;margin-bottom:28px}
+.meta-row{display:flex;gap:16px;align-items:baseline;border-bottom:1px solid rgba(255,255,255,0.06);padding:10px 0}
+.meta-key{font-size:8px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.3);min-width:90px}
+.meta-val{font-size:13px;color:rgba(255,255,255,.8);font-weight:300}
+.film-desc{font-size:13px;line-height:1.85;color:rgba(255,255,255,.4);margin-bottom:32px;font-weight:300}
+.btn-outline{display:inline-block;padding:14px 36px;border:1px solid rgba(42,127,146,.5);color:var(--teal-light);font-size:9px;letter-spacing:3px;text-transform:uppercase;text-decoration:none;font-weight:500;transition:all .3s;cursor:pointer}
+.btn-outline:hover{background:var(--teal);border-color:var(--teal);color:white}
+
+/* PIPELINE */
+#pipeline{background:var(--off-white)}
+.pipeline-list{display:flex;flex-direction:column;gap:2px;margin-top:8px}
+.pipeline-item{display:flex;gap:28px;align-items:flex-start;padding:28px 32px;background:var(--white);border:1px solid var(--border);transition:border-color .2s}
+.pipeline-item:hover{border-color:var(--teal)}
+.p-num{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:var(--teal-pale);line-height:1;min-width:40px;border:1px solid var(--border);text-align:center;padding:8px 0}
+.p-body h4{font-size:13px;font-weight:600;color:var(--dark);letter-spacing:1px;margin-bottom:6px}
+.p-body p{font-size:12px;color:var(--text-light);line-height:1.7;font-weight:300}
+.p-type{margin-left:auto;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--teal);font-weight:600;white-space:nowrap;padding-top:4px}
+
+/* FILMS */
+#films{background:var(--white)}
+.films-list{display:flex;flex-direction:column;gap:2px}
+.film-card{background:var(--off-white);border:1px solid var(--border);overflow:hidden;transition:border-color .2s}
+.film-card:hover{border-color:var(--teal)}
+.film-photo{width:100%;height:400px;background:linear-gradient(160deg,#1a3a40,#0f2530);display:flex;align-items:flex-end;justify-content:flex-start;position:relative;overflow:hidden}
+.film-photo-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:rgba(255,255,255,.2);font-size:11px;letter-spacing:3px;text-transform:uppercase;text-align:center;gap:8px}
+.film-photo-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(15,31,34,.9) 0%,transparent 60%)}
+.film-photo-title{position:relative;z-index:2;padding:32px;color:var(--white)}
+.film-photo-title .year{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--teal-light);margin-bottom:8px}
+.film-photo-title h3{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:300;line-height:1}
+.film-details{padding:40px;display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.detail-col{}
+.detail-row{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--border)}
+.detail-row:last-child{border-bottom:none}
+.dk{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--grey);font-weight:500;min-width:80px}
+.dv{font-size:13px;color:var(--text);font-weight:300}
+.platforms{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.platform-tag{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;font-size:9px;letter-spacing:2px;text-transform:uppercase;font-weight:600;color:var(--teal);border:1px solid var(--teal-pale);background:var(--teal-pale)}
+
+/* TV */
+#tv{background:var(--off-white)}
+.tv-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:60px}
+.tv-col h3{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--teal);font-weight:600;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+.tv-row{display:flex;justify-content:space-between;align-items:baseline;padding:10px 0;border-bottom:1px solid var(--border);font-size:12px;font-weight:300}
+.tv-row span:last-child{color:var(--grey);font-size:11px;text-align:right}
+.prime-box{background:var(--white);border:1px solid var(--border);padding:28px}
+.prime-box p{font-size:13px;line-height:1.8;color:var(--text-light);font-weight:300}
+.prime-box strong{color:var(--teal)}
+
+/* PRESS */
+#press{background:var(--white)}
+.press-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.press-card{padding:36px 32px;border:1px solid var(--border);background:var(--off-white);display:flex;flex-direction:column;gap:12px;transition:border-color .2s;cursor:pointer}
+.press-card:hover{border-color:var(--teal)}
+.press-source{font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--teal);font-weight:600}
+.press-headline{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:var(--dark);line-height:1.3}
+.press-excerpt{font-size:12px;color:var(--text-light);font-weight:300;line-height:1.6}
+.press-date{font-size:11px;color:var(--grey);font-weight:300;margin-top:auto}
+.press-arrow{font-size:16px;color:var(--teal);align-self:flex-end}
+
+/* TEAM */
+#team{background:var(--dark)}
+#team .sec-title{color:var(--white)}
+#team .sec-label{color:var(--teal-light)}
+#team .divider{background:var(--teal-light)}
+.team-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:32px}
+.team-card{padding:48px 40px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);transition:background .3s}
+.team-card:hover{background:rgba(26,95,110,.1)}
+.team-avatar{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--teal-light));display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:22px;color:white;font-weight:300;margin-bottom:20px}
+.team-name{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:var(--white);margin-bottom:6px}
+.team-role{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--teal-light);font-weight:500;margin-bottom:14px}
+.team-bio{font-size:13px;color:rgba(255,255,255,.35);font-weight:300;line-height:1.7;margin-bottom:20px}
+.team-contacts{display:flex;flex-direction:column;gap:6px;padding-top:16px;border-top:1px solid rgba(255,255,255,.06)}
+.team-contacts a{font-size:12px;color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s;font-weight:300}
+.team-contacts a:hover{color:var(--teal-light)}
+.imppa-note{padding:24px 32px;border:1px solid rgba(26,95,110,.3);background:rgba(26,95,110,.08);font-size:12px;color:rgba(255,255,255,.35);font-weight:300;line-height:1.8}
+
+/* FOOTER */
+footer{background:#080f11;padding:40px 60px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(255,255,255,.05)}
+.footer-logo{font-weight:600;font-size:12px;letter-spacing:4px;color:rgba(255,255,255,.3);text-transform:uppercase}
+.footer-copy{font-size:11px;color:rgba(255,255,255,.15);font-weight:300}
+.footer-links{display:flex;gap:28px}
+.footer-links a{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.25);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:var(--teal-light)}
+
+@media(max-width:900px){
+  section{padding:60px 24px}
+  nav{padding:16px 24px}
+  nav ul{display:none}
+  .hamburger{display:flex}
+  .about-grid,.upcoming-grid,.films-list .film-details,.tv-grid,.press-grid,.team-grid{grid-template-columns:1fr}
+  .stats-row{grid-template-columns:1fr 1fr}
+  footer{flex-direction:column;gap:16px;text-align:center;padding:32px 24px}
+  .film-photo{height:260px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div>
+    <div class="nav-wing">
+      <svg viewBox="0 0 120 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M60 6C42 1,10 8,2 20C18 14,38 16,60 30" fill="#1a5f6e" opacity=".8"/>
+        <path d="M60 6C78 1,110 8,118 20C102 14,82 16,60 30" fill="#4a9aaa" opacity=".5"/>
+      </svg>
+    </div>
+    <div class="nav-logo-name">Wingspan</div>
+    <div class="nav-logo-sub">Motion Pictures LLP</div>
+  </div>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#upcoming">Upcoming</a></li>
+    <li><a href="#pipeline">Projects</a></li>
+    <li><a href="#films">Films</a></li>
+    <li><a href="#tv">Television</a></li>
+    <li><a href="#press">Press</a></li>
+    <li><a href="#team">Contact</a></li>
+  </ul>
+  <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu">
+  <button class="mobile-close" onclick="document.querySelector('.mobile-menu').classList.remove('open')">✕</button>
+  <a href="#about" onclick="document.querySelector('.mobile-menu').classList.remove('open')">About</a>
+  <a href="#upcoming" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Upcoming</a>
+  <a href="#pipeline" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Projects</a>
+  <a href="#films" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Films</a>
+  <a href="#tv" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Television</a>
+  <a href="#press" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Press</a>
+  <a href="#team" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Contact</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Established 2002 · Mumbai, India</p>
+    <h1 class="hero-title">Wingspan<span>Motion Pictures</span></h1>
+    <p class="hero-sub">Stories that take flight</p>
+    <a href="#upcoming" class="hero-cta">View Our Work</a>
+  </div>
+  <div class="hero-scroll"><div class="scroll-line"></div><span>Scroll</span></div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="inner">
+    <p class="sec-label">Who We Are</p>
+    <h2 class="sec-title">A legacy of <em>storytelling</em></h2>
+    <div class="divider"></div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>Vidisha Productions Pvt. Ltd. was established in 2002 as a production house dedicated to crafting feature films, television serials, and digital content that resonates across India and beyond.</p>
+        <p>Wingspan Motion Pictures LLP is our sister concern under whose banner all future content is produced — carrying forward two decades of experience with a renewed creative vision for Indian cinema.</p>
+        <p>We are a registered member of the Indian Motion Pictures Producers' Association, and our team of experienced professionals brings deep expertise in every stage of film production.</p>
+        <span class="imppa-badge">IMPPA Member · No. 7909</span>
+      </div>
+      <div>
+        <div class="stats-row">
+          <div class="stat-box">
+            <div class="stat-num">20+</div>
+            <div class="stat-lbl">Years of Production</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">2</div>
+            <div class="stat-lbl">Hindi Feature Films</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">7</div>
+            <div class="stat-lbl">TV Series</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">6+</div>
+            <div class="stat-lbl">Projects on Prime Video</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- UPCOMING -->
+<section id="upcoming">
+  <div class="inner">
+    <p class="sec-label">Now Announced</p>
+    <h2 class="sec-title" style="color:white;">Featured <em style="color:rgba(255,255,255,.3)">Project</em></h2>
+    <div class="divider" style="background:var(--teal-light)"></div>
+    <div class="upcoming-grid">
+      <div class="poster">
+        <div class="poster-icon">🎬</div>
+        <div class="poster-ph">Poster<br/>Coming Soon</div>
+      </div>
+      <div class="upcoming-info">
+        <p class="film-tag">Announced · In Development</p>
+        <h3 class="film-title-lg">Gautam Buddha –<br/>My Father<em>Based on 'Rahula' by Subodh Poddar</em></h3>
+        <div class="film-meta">
+          <div class="meta-row"><span class="meta-key">Based On</span><span class="meta-val">The novel 'Rahula' by Subodh Poddar</span></div>
+          <div class="meta-row"><span class="meta-key">Format</span><span class="meta-val">Hindi Feature Film</span></div>
+          <div class="meta-row"><span class="meta-key">Director</span><span class="meta-val">[To Be Announced]</span></div>
+          <div class="meta-row"><span class="meta-key">Status</span><span class="meta-val">Script in Development · Rights Acquired</span></div>
+        </div>
+        <p class="film-desc">An intimate historical drama exploring the relationship between Gautam Buddha and his son Rahula — seen through the eyes of a child who must reconcile his father's spiritual calling with the bonds of family.</p>
+        <a href="#team" class="btn-outline">Enquire About This Project</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PIPELINE -->
+<section id="pipeline">
+  <div class="inner">
+    <p class="sec-label">In Development</p>
+    <h2 class="sec-title">Upcoming <em>Projects</em></h2>
+    <div class="divider"></div>
+    <div class="pipeline-list">
+      <div class="pipeline-item">
+        <div class="p-num">01</div>
+        <div class="p-body"><h4>Gautam Buddha – My Father</h4><p>Based on the novel 'Rahula' by Subodh Poddar. Script in development, rights acquired.</p></div>
+        <div class="p-type">Feature Film</div>
+      </div>
+      <div class="pipeline-item">
+        <div class="p-num">02</div>
+        <div class="p-body"><h4>Biopic — Hindi Film Personality</h4><p>Based on a best-selling novel in its 6th edition. Rights for filming have been acquired.</p></div>
+        <div class="p-type">Biopic</div>
+      </div>
+      <div class="pipeline-item">
+        <div class="p-num">03</div>
+        <div class="p-body"><h4>Historical Drama — South Indian Emperor</h4><p>Being developed with a leading director from South India helming the project.</p></div>
+        <div class="p-type">Historical Drama</div>
+      </div>
+      <div class="pipeline-item">
+        <div class="p-num">04</div>
+        <div class="p-body"><h4>Marathi Feature Film</h4><p>Script is complete and ready to go on floors.</p></div>
+        <div class="p-type">Marathi Film</div>
+      </div>
+      <div class="pipeline-item">
+        <div class="p-num">05</div>
+        <div class="p-body"><h4>Hindi Feature Film</h4><p>In final stages of scripting with a commercially viable budget.</p></div>
+        <div class="p-type">Feature Film</div>
+      </div>
+      <div class="pipeline-item">
+        <div class="p-num">06</div>
+        <div class="p-body"><h4>Web Series</h4><p>In final stages of scripting, targeting major digital platforms.</p></div>
+        <div class="p-type">Digital Series</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FILMS -->
+<section id="films">
+  <div class="inner">
+    <p class="sec-label">Filmography</p>
+    <h2 class="sec-title">Feature <em>Films</em></h2>
+    <div class="divider"></div>
+    <div class="films-list">
+
+      <!-- PANGA NAA LO -->
+      <div class="film-card">
+        <div class="film-photo">
+          <div class="film-photo-ph">
+            <span>🎬</span>
+            <span>Add film poster here</span>
+          </div>
+          <div class="film-photo-overlay"></div>
+          <div class="film-photo-title">
+            <div class="year">2007 · Hindi Feature Film</div>
+            <h3>Panga Naa Lo</h3>
+          </div>
+        </div>
+        <div class="film-details">
+          <div class="detail-col">
+            <div class="detail-row"><span class="dk">Directed by</span><span class="dv">Rajen Kothari</span></div>
+            <div class="detail-row"><span class="dk">Written by</span><span class="dv">Amol Gupte</span></div>
+            <div class="detail-row"><span class="dk">Released</span><span class="dv">20 April 2007</span></div>
+            <div class="detail-row"><span class="dk">Distributor</span><span class="dv">Adlabs — Pan-India release</span></div>
+          </div>
+          <div class="detail-col">
+            <div class="detail-row"><span class="dk">Cast</span><span class="dv">Om Puri, Satish Shah, Supriya Pathak, Kunaal Roy Kapoor, Navni Parihar</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHAMOUS -->
+      <div class="film-card">
+        <div class="film-photo">
+          <div class="film-photo-ph">
+            <span>🎬</span>
+            <span>Add film poster here</span>
+          </div>
+          <div class="film-photo-overlay"></div>
+          <div class="film-photo-title">
+            <div class="year">2018 · Hindi Feature Film</div>
+            <h3>Phamous</h3>
+          </div>
+        </div>
+        <div class="film-details">
+          <div class="detail-col">
+            <div class="detail-row"><span class="dk">Written & Dir.</span><span class="dv">Karan Butani</span></div>
+            <div class="detail-row"><span class="dk">Released</span><span class="dv">June 2018</span></div>
+            <div class="detail-row"><span class="dk">Distributor</span><span class="dv">Pan-India theatrical release</span></div>
+            <div class="detail-row"><span class="dk">Streaming</span>
+              <span class="dv">
+                <div class="platforms">
+                  <span class="platform-tag">▶ Amazon Prime</span>
+                  <span class="platform-tag">▶ Netflix</span>
+                </div>
+              </span>
+            </div>
+          </div>
+          <div class="detail-col">
+            <div class="detail-row"><span class="dk">Cast</span><span class="dv">Jimmy Shergill, Kay Kay Menon, Jackie Shroff, Pankaj Tripathi, Shriya Saran</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TV -->
+<section id="tv">
+  <div class="inner">
+    <p class="sec-label">Television & Digital</p>
+    <h2 class="sec-title">Beyond the <em>Screen</em></h2>
+    <div class="divider"></div>
+    <div class="tv-grid">
+      <div>
+        <h3>Television Serials</h3>
+        <div class="tv-row"><span>Akrit</span><span>Zee Marathi · 26 eps</span></div>
+        <div class="tv-row"><span>Reshimgathi</span><span>Zee Marathi · 1 ep</span></div>
+        <div class="tv-row"><span>Shravansari</span><span>Zee Marathi · 4 eps</span></div>
+        <div class="tv-row"><span>Mee Ek Bandu</span><span>ETV Marathi · 52 eps</span></div>
+        <div class="tv-row"><span>Gubbare</span><span>Zee TV · 8 eps</span></div>
+        <div class="tv-row"><span>Ovi</span><span>Hungama · 16 eps</span></div>
+        <div class="tv-row"><span>Tujhya Vina</span><span>Zee Marathi · 252 eps</span></div>
+      </div>
+      <div>
+        <h3>Telefilms</h3>
+        <div class="tv-row"><span>Savali</span><span>ETV Marathi</span></div>
+        <div class="tv-row"><span>Rain Basera</span><span>Sahara</span></div>
+        <br/>
+        <h3>Documentaries</h3>
+        <div class="tv-row" style="flex-direction:column;align-items:flex-start;gap:2px"><span>Adverse Impact of Religious Immersions on Nature</span><span>For MMRDA</span></div>
+        <div class="tv-row" style="flex-direction:column;align-items:flex-start;gap:2px"><span>Rain Water Harvesting</span><span>For MMRDA</span></div>
+      </div>
+      <div>
+        <h3>On Prime Video</h3>
+        <div class="prime-box">
+          <p>We have released <strong>1 feature film</strong>, <strong>4 short films</strong> and <strong>1 documentary film</strong> on Prime Video for US and UK audiences.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRESS -->
+<section id="press">
+  <div class="inner">
+    <p class="sec-label">Press & Media</p>
+    <h2 class="sec-title">In the <em>News</em></h2>
+    <div class="divider"></div>
+    <div class="press-grid">
+      <div class="press-card">
+        <span class="press-source">[Publication Name]</span>
+        <h4 class="press-headline">Add your press article headline here</h4>
+        <p class="press-excerpt">Replace with a short excerpt or description of the article. Link it to the original publication.</p>
+        <p class="press-date">[Date]</p>
+        <span class="press-arrow">→</span>
+      </div>
+      <div class="press-card">
+        <span class="press-source">[Publication Name]</span>
+        <h4 class="press-headline">Add your press article headline here</h4>
+        <p class="press-excerpt">Replace with a short excerpt or description of the article. Link it to the original publication.</p>
+        <p class="press-date">[Date]</p>
+        <span class="press-arrow">→</span>
+      </div>
+      <div class="press-card">
+        <span class="press-source">[Publication Name]</span>
+        <h4 class="press-headline">Add your press article headline here</h4>
+        <p class="press-excerpt">Replace with a short excerpt or description of the article. Link it to the original publication.</p>
+        <p class="press-date">[Date]</p>
+        <span class="press-arrow">→</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="inner">
+    <p class="sec-label">The Team</p>
+    <h2 class="sec-title" style="color:white">Meet the <em style="color:rgba(255,255,255,.3)">Producers</em></h2>
+    <div class="divider" style="background:var(--teal-light)"></div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-avatar">SJ</div>
+        <div class="team-name">Sunit Jawadekar</div>
+        <div class="team-role">Producer · Co-Founder</div>
+        <p class="team-bio">[Add a short biography — background, experience, and creative vision.]</p>
+        <div class="team-contacts">
+          <a href="tel:+919820102711">+91 98201 02711</a>
+          <a href="mailto:wingspanmopictures@gmail.com">wingspanmopictures@gmail.com</a>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">NK</div>
+        <div class="team-name">Nivedita Kothare</div>
+        <div class="team-role">Producer · Co-Founder</div>
+        <p class="team-bio">[Add a short biography — background, experience, and creative vision.]</p>
+        <div class="team-contacts">
+          <a href="tel:+919820425742">+91 98204 25742</a>
+          <a href="mailto:wingspanmopictures@gmail.com">wingspanmopictures@gmail.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="imppa-note">Vidisha Productions Pvt. Ltd. &amp; Wingspan Motion Pictures LLP · Registered member of the Indian Motion Pictures Producers' Association (IMPPA) — No. 7909 · Mumbai, India</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Wingspan Motion Pictures</div>
+  <p class="footer-copy">© 2025 Wingspan Motion Pictures LLP. All rights reserved.</p>
+  <div class="footer-links">
+    <a href="#about">About</a>
+    <a href="#films">Films</a>
+    <a href="#press">Press</a>
+    <a href="#team">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>
