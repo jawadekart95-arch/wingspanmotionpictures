@@ -173,9 +173,23 @@ section{padding:100px 60px}
 .film-trailer-side{aspect-ratio:16/9;height:auto}
 .film-card-info-lower{padding:36px 40px;border-left:1px solid rgba(255,255,255,.07)}
 @media(max-width:900px){
-  .film-card-lower{grid-template-columns:1fr}
-  .film-poster-banner{height:220px}
-  .film-poster-title{left:24px;bottom:20px}
+    .film-card-lower{grid-template-columns:1fr}
+    .film-poster-banner{height:220px}
+    .film-poster-title{left:24px;bottom:20px}
+}
+
+@media(max-width:640px){
+    .film-card{grid-template-columns:1fr;min-height:unset}
+    .film-card-visual{min-height:260px}
+    .film-card-info{padding:28px 24px;border-left:none;border-top:1px solid rgba(255,255,255,.07)}
+    .film-card-info .film-card-title{font-size:clamp(28px,7vw,42px)}
+    .film-meta-table{margin-bottom:20px}
+    .film-meta-row{flex-direction:column;gap:4px;padding:10px 0}
+    .fmk{min-width:unset;font-size:14px}
+    .fmv{font-size:16px}
+    .film-links{flex-wrap:wrap;gap:8px}
+    .film-link{font-size:14px;padding:6px 12px}
+    .platforms{flex-wrap:wrap}
 }
 
 #films{background:var(--dark)}
