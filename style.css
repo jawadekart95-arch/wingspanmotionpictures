@@ -150,10 +150,10 @@ section{padding:100px 60px}
 #gallery .sec-label{color:var(--teal-light)}
 #gallery .sec-title{color:var(--white)}
 #gallery .divider{background:var(--teal-light)}
-.carousel-wrap{position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.07);background:#050d10}
-.carousel-track{display:flex;transition:transform .5s cubic-bezier(.4,0,.2,1)}
-.carousel-slide{min-width:100%;position:relative;display:flex;align-items:center;justify-content:center}
-.carousel-slide img{width:100%;height:560px;object-fit:contain;background:#050d10;display:block}
+.carousel-wrap{position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.07);background:#050d10;height:min(560px,65vh)}
+.carousel-track{display:flex;transition:transform .5s cubic-bezier(.4,0,.2,1);height:100%}
+.carousel-slide{min-width:100%;height:100%;position:relative;display:flex;align-items:center;justify-content:center}
+.carousel-slide img{width:100%;height:100%;object-fit:contain;background:#050d10;display:block}
 .carousel-btn{position:absolute;top:50%;transform:translateY(-50%);z-index:5;background:rgba(10,26,30,.75);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.75);font-size:38px;width:54px;height:54px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;backdrop-filter:blur(8px);line-height:1;padding-bottom:2px}
 .carousel-btn:hover{background:var(--teal);color:white;border-color:var(--teal)}
 .carousel-prev{left:16px}
@@ -165,8 +165,8 @@ section{padding:100px 60px}
 .carousel-thumb:hover{opacity:.75}
 .carousel-thumb.active{border-color:var(--teal-light);opacity:1}
 .carousel-thumb img{width:100%;height:100%;object-fit:cover;display:block}
-@media(max-width:900px){.carousel-slide img{height:380px}}
-@media(max-width:640px){.carousel-slide img{height:260px}.carousel-btn{width:40px;height:40px;font-size:28px}.carousel-thumb{width:68px;height:46px}}
+@media(max-width:900px){.carousel-wrap{height:min(380px,60vh)}}
+@media(max-width:640px){.carousel-wrap{height:min(260px,55vh)}.carousel-btn{width:40px;height:40px;font-size:28px}.carousel-thumb{width:68px;height:46px}}
 /* PIPELINE */
 #pipeline{background:var(--dark)}
 #pipeline .sec-title{color:var(--white)}
